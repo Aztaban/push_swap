@@ -6,7 +6,7 @@
 #    By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/05 00:43:12 by mjusta            #+#    #+#              #
-#    Updated: 2025/08/21 23:56:09 by mjusta           ###   ########.fr        #
+#    Updated: 2025/08/22 01:44:31 by mjusta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ LIBFT_DIR = libft
 
 SRC = \
 		$(SRC_DIR)/main.c \
+		$(SRC_DIR)/helpers.c \
+		$(SRC_DIR)/instructions/swap.c \
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
@@ -54,6 +56,6 @@ fclean: clean
 re: fclean all
 
 valgrind:
-	@valgrind --leak-check=full --track-origins=yes ./$(NAME) infile "grep 42" "cat" outfile
+	@valgrind --leak-check=full --track-origins=yes ./$(NAME) 2 1 3 6 5 8
 
 .PHONY: all clean fclean re valgrind
