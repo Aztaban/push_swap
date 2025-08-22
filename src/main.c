@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:56:16 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/22 01:54:08 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/22 19:51:44 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,25 @@ int	main(void)
 	push_front(a, 5);
 	push_front(a, 3);
 	push_front(a, 1);
+	
+	push_front(b, 1);
+	push_front(b, 3);
+	push_front(b, 5);
 
 	print_stack("a", a);
 	print_stack("b", b);
 
-	ss(a, b);
+	rrr(a, b);
+
+	print_stack("a", a);
+	print_stack("b", b);
+
+	rra(a);
+
+	print_stack("a", a);
+	print_stack("b", b);
+
+	rrb(b);
 
 	print_stack("a", a);
 	print_stack("b", b);

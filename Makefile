@@ -6,7 +6,7 @@
 #    By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/05 00:43:12 by mjusta            #+#    #+#              #
-#    Updated: 2025/08/22 01:44:31 by mjusta           ###   ########.fr        #
+#    Updated: 2025/08/22 19:53:05 by mjusta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRC = \
 		$(SRC_DIR)/main.c \
 		$(SRC_DIR)/helpers.c \
 		$(SRC_DIR)/instructions/swap.c \
+		$(SRC_DIR)/instructions/rotate.c \
+		$(SRC_DIR)/instructions/reverse.c \
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
