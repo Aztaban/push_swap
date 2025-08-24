@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 01:07:42 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/24 02:36:39 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/24 03:26:17 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ t_stack	*create_stack(void)
 
 void	push_front(t_stack *s, int value)
 {
-	t_node *new = malloc(sizeof(t_node));
+	t_node	*new;
+
+	new = malloc(sizeof(t_node));
 	if (!new)
 		return ;
 	new->value = value;
@@ -33,6 +35,23 @@ void	push_front(t_stack *s, int value)
 	s->head = new;
 	if (s->size == 0)
 		s->tail = new;
+	s->size++;
+}
+
+void	push_back(t_stack *s, int value)
+{
+	t_node	*new;
+
+	new = malloc(sizeof(t_node));
+	if (!new)
+		return ;
+	new->value = value;
+	new->next = NULL;
+	if (s->tail)
+		s->tail->next = new;
+	else
+		s->head = new;
+	s->tail = new;
 	s->size++;
 }
 

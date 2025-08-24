@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:21:59 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/24 02:37:56 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/24 03:44:48 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ void	rr(t_stack *a, t_stack *b);
 void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
+
+// parsing
+bool	is_valid_number(const char *s);
+int		ft_atoi_safe(const char *str, bool *error);
+bool	check_duplicates(t_stack *s);
+bool	parse_args(int argc, char **argv, t_stack *a);
 
 // helpers
 t_stack	*create_stack(void);
