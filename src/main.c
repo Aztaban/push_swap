@@ -6,11 +6,13 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:56:16 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/22 19:51:44 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/24 02:37:43 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+
 
 int	main(void)
 {
@@ -23,25 +25,26 @@ int	main(void)
 	
 	push_front(b, 1);
 	push_front(b, 3);
-	push_front(b, 5);
 
 	print_stack("a", a);
 	print_stack("b", b);
 
-	rrr(a, b);
+	pa(a, b);
 
 	print_stack("a", a);
 	print_stack("b", b);
 
-	rra(a);
+	pa(a, b);
 
 	print_stack("a", a);
 	print_stack("b", b);
 
-	rrb(b);
+	pa(a, b);
 
 	print_stack("a", a);
 	print_stack("b", b);
 
+	free_stack(a);
+	free_stack(b);
 	return (0);
 }

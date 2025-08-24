@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 01:01:01 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/22 19:56:39 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/24 02:14:42 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ static bool	reverse_rotate(t_stack *s)
 	if (s->size < 2)
 		return (false);
 	new_head = s->tail;
-	new_tail = s->head->next;
+	new_tail = s->head;
 	while (new_tail->next && new_tail->next != s->tail)
 		new_tail = new_tail->next;
+	new_tail->next = NULL;
 	new_head->next = s->head;
 	s->head = new_head;
 	s->tail = new_tail;

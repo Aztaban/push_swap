@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:21:59 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/22 01:44:07 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/24 02:37:56 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ void	rrr(t_stack *a, t_stack *b);
 t_stack	*create_stack(void);
 void	push_front(t_stack *s, int value);
 void	print_stack(const char *name, t_stack *s);
+void	free_stack(t_stack *s);
 
 #endif

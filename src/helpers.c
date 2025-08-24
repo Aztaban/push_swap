@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 01:07:42 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/22 01:43:45 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/24 02:36:39 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,19 @@ void print_stack(const char *name, t_stack *s)
 		tmp = tmp->next;
 	}
 	ft_printf("\n");
+}
+
+void	free_stack(t_stack *s)
+{
+	t_node	*current;
+	t_node	*next;
+
+	current = s->head;
+	while (current)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	free(s);
 }
