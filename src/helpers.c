@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 01:07:42 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/24 03:26:17 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/25 14:48:42 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 t_stack	*create_stack(void)
 {
-	t_stack *s = malloc(sizeof(t_stack));
+	t_stack	*s;
+
+	s = malloc(sizeof(t_stack));
 	if (!s)
 		return (NULL);
 	s->head = NULL;
@@ -55,10 +57,12 @@ void	push_back(t_stack *s, int value)
 	s->size++;
 }
 
-void print_stack(const char *name, t_stack *s)
+void	print_stack(const char *name, t_stack *s)
 {
+	t_node	*tmp;
+
 	ft_printf("%s: ", name);
-	t_node *tmp = s->head;
+	tmp = s->head;
 	while (tmp)
 	{
 		ft_printf("%d ", tmp->value);

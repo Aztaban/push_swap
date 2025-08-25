@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 00:56:54 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/22 01:53:48 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/25 14:46:27 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ void	sa(t_stack *a)
 	if (swap(a))
 		ft_printf("sa\n");
 }
+
 void	sb(t_stack *b)
 {
 	if (swap(b))
 		ft_printf("sb\n");
 }
+
 void	ss(t_stack *a, t_stack *b)
 {
 	if (swap(a) | swap(b))

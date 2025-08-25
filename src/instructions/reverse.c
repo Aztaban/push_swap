@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 01:01:01 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/24 02:14:42 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/25 14:46:58 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	rra(t_stack *a)
 void	rrb(t_stack *b)
 {
 	if (reverse_rotate(b))
-		ft_printf("rrb\n");	
+		ft_printf("rrb\n");
 }
 
 void	rrr(t_stack *a, t_stack *b)

@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:55:17 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/24 03:06:02 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/25 14:45:57 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,21 @@ bool	is_valid_number(const char *s)
 		s++;
 	}
 	return (true);
+}
+
+int	ft_atoi_safe(const char *str, bool *err)
+{
+	long	result;
+	int		sign;
+
+	result = 0;
+	sign = 1;
+	*err = false;
+	if (*str == '+' || *str == '-')
+		if(*str++ == '-')
+			sign = -1;
+	while (*str)
+	{
+		
+	}
 }
