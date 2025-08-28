@@ -6,7 +6,7 @@
 #    By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/05 00:43:12 by mjusta            #+#    #+#              #
-#    Updated: 2025/08/24 03:42:48 by mjusta           ###   ########.fr        #
+#    Updated: 2025/08/29 01:15:35 by mjusta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRC = \
 		$(SRC_DIR)/instructions/reverse.c \
 		$(SRC_DIR)/instructions/push.c \
 
-OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
+#OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
+OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 
 LIBFT = $(LIBFT_DIR)/libft.a
 
@@ -44,12 +45,12 @@ $(NAME): $(OBJ) $(LIBFT)
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
-$(OBJ_DIR)/%.o: %.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ) $(BONUS_OBJ)
+	$(RM) $(OBJ)
 	@test -d $(OBJ_DIR) && find $(OBJ_DIR) -type d -empty -delete || true
 	$(MAKE) -C $(LIBFT_DIR) clean
 
