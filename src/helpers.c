@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 01:07:42 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/29 01:06:34 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/29 03:25:40 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	push_front(t_stack *s, int value)
 		return ;
 	new->value = value;
 	new->next = s->head;
+	new->index = -1;
 	s->head = new;
 	if (s->size == 0)
 		s->tail = new;
@@ -58,6 +59,7 @@ void	push_back(t_stack *s, int value)
 		return ;
 	new->value = value;
 	new->next = NULL;
+	new->index = -1;
 	if (s->tail)
 		s->tail->next = new;
 	else
@@ -91,12 +93,11 @@ void	print_stack(const char *name, t_stack *s)
 {
 	t_node	*tmp;
 
-	ft_printf("%s: ", name);
+	ft_printf("%s:\n", name);
 	tmp = s->head;
 	while (tmp)
 	{
-		ft_printf("%d ", tmp->value);
+		ft_printf("Node[%i]: %d\n",tmp->index, tmp->value);
 		tmp = tmp->next;
 	}
-	ft_printf("\n");
 }

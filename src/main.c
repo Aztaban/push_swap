@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:56:16 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/29 01:02:49 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/29 03:24:11 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,28 @@
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
+	t_stack	*b;
 
 	if (argc < 2)
 		return (EXIT_SUCCESS);
 	a = create_stack();
 	if (!a)
 		return (EXIT_FAILURE);
+	b = create_stack();
+	if (!b)
+		return (free_stack(a), EXIT_FAILURE);
 	if (!parse_args(argc, argv, a))
 	{
-		free_stack(a);
 		write(STDERR_FILENO, "Error\n", 6);
-		return (EXIT_FAILURE);
+		return (free_stack(a), free_stack(b), EXIT_FAILURE);
 	}
+/* 	if (is_sorted(a))
+		return (free_stack(a), free_stack(b), EXIT_SUCCESS); */
 	// TODO: Here the will be the sorting magic
-
+	index_compress(a);
 	print_stack("Stack A", a);
-	free_stack(a);
-	return (EXIT_SUCCESS);
+	return (free_stack(a), free_stack(b), EXIT_SUCCESS);
 }
-
 
 /* int	main(int argc, char **argv)
 {
