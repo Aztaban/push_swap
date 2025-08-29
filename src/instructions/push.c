@@ -6,37 +6,53 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 00:58:48 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/29 01:07:44 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/29 02:12:53 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /**
- * @brief Transfers the top element from the source stack to the destination 
- *        stack.
+ * @brief Transfer the top element from src to the front of dst.
  *
- * This function moves the head node from `src` to the front of `dst`,
- * adjusting both stacks' head pointers and sizes accordingly.
+ * Moves the head node from src to become the new head of dst, updating
+ * both stacks' head pointers, tail pointers (when necessary), and sizes.
  *
- * @param dst The destination stack to receive the node.
- * @param src The source stack to lose its top node.
- * @return true if a node was transferred, false if the source was empty.
+ * Behavior & invariants:
+ * 
+ * - If dst was empty, the moved node becomes both head and tail of dst.
+ * 
+ * - If src becomes empty after the move, src->tail is set to NULL.
+ * 
+ * - Sizes are adjusted: dst->size++ and src->size--.
+ *
+ * @param dst Destination stack that will receive the node.
+ * @param src Source stack that will lose its top node.
+ * @return true if a node was transferred; false if src was empty.
  */
 static bool	push(t_stack *dst, t_stack *src)
 {
-	t_node	*new_src_head;
-	t_node	*new_dst_head;
+	t_node	*moved;
 
-	if (src->size < 1)
+	if (src->size == 0)
 		return (false);
-	new_src_head = src->head->next;
-	new_dst_head = src->head;
-	new_dst_head->next = dst->head;
-	dst->head = new_dst_head;
-	src->head = new_src_head;
-	dst->size++;
+	moved = src->head;
+	src->head = moved->next;
 	src->size--;
+	if (src->size == 0)
+		src->tail = NULL;
+	if (dst->size == 0)
+	{
+		moved->next = NULL;
+		dst->head = moved;
+		dst->tail = moved;
+	}
+	else
+	{
+		moved->next = dst->head;
+		dst->head = moved;
+	}
+	dst->size++;
 	return (true);
 }
 
