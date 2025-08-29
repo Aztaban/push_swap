@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:56:16 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/29 03:24:11 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/29 03:55:04 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ int	main(int argc, char **argv)
 		write(STDERR_FILENO, "Error\n", 6);
 		return (free_stack(a), free_stack(b), EXIT_FAILURE);
 	}
-/* 	if (is_sorted(a))
-		return (free_stack(a), free_stack(b), EXIT_SUCCESS); */
-	// TODO: Here the will be the sorting magic
 	index_compress(a);
+	// should i check by indexes or the real value before indexing?
+	if (is_sorted(a))
+		return (free_stack(a), free_stack(b), EXIT_SUCCESS);
+	// TODO: Here the will be the sorting magic
 	print_stack("Stack A", a);
 	return (free_stack(a), free_stack(b), EXIT_SUCCESS);
 }
