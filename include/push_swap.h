@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:21:59 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/30 03:43:23 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/01 01:00:36 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,30 @@ typedef struct s_stack
 	t_node	*tail;
 	int		size;
 }	t_stack;
+
+typedef struct s_move
+{
+	int index;
+	int pos_a;
+	int pos_b;
+	int dir_a;
+	int dir_b;
+	int cost;
+}	t_move;
+
+typedef struct s_alignment
+{
+	int len_a;
+	int pos_a;
+	int len_b;
+	int pos_b;
+}	t_alignment;
+
+typedef struct s_directions
+{
+	int	dir_a;
+	int	dir_b;
+}	t_directions;
 
 // swap
 void	sa(t_stack *a);
@@ -70,8 +94,9 @@ void	sort_turk(t_stack *a, t_stack *b);    // main greedy loop
 
 // Cost helpers:
 int		pos_in_stack(const t_stack *s, int index); // position (0-based) of node with given index
-int		rot_cost(int len, int pos);           // min cost to bring pos to top (ra vs rra)
+int		rot_cost(int len, int pos);
+int		rot_dir(int len, int pos);
 int		find_insert_pos_b(const t_stack *b, int a_index);
-void	exec_cheapest_move(t_stack *a, t_stack *b);
+void	compute_best_move(const t_stack *a, const t_stack *b, t_move *out);
 
 #endif

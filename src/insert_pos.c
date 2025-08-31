@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 00:07:28 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/30 03:45:19 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/01 00:55:54 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	max_index(t_stack *s)
 	return (max);
 }
 
-static int	find_between_nodes(const t_stack *b, int a_idx)
+static int	find_between_nodes(const t_stack *b, int a_index)
 {
 	t_node	*current;
 	t_node	*next;
@@ -62,7 +62,7 @@ static int	find_between_nodes(const t_stack *b, int a_idx)
 			next = current->next;
 		else
 			next = b->head;
-		if (current->index > a_idx && a_idx > next->index)
+		if (current->index > a_index && a_index > next->index)
 		{
 			if (i + 1 == b->size)
 				return (0);
@@ -74,7 +74,7 @@ static int	find_between_nodes(const t_stack *b, int a_idx)
 	return (0);
 }
 
-int find_insert_pos_b(const t_stack *b, int a_idx)
+int find_insert_pos_b(const t_stack *b, int a_index)
 {
 	int	bmin;
 	int	bmax;
@@ -85,12 +85,12 @@ int find_insert_pos_b(const t_stack *b, int a_idx)
 	// move min max indexing in one function if possible
 	bmin = min_index(b);
 	bmax = max_index(b);
-	if (a_idx > bmax || a_idx < bmin)
+	if (a_index > bmax || a_index < bmin)
 	{
 		pos_max = pos_of_value(b, bmax);
 		if (pos_max < 0 || (pos_max + 1) == b->size)
 			return (0);
 		return (pos_max + 1);
 	}
-	return (find_between_nodes(b, a_idx));
+	return (find_between_nodes(b, a_index));
 }
