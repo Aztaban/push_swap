@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:21:59 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/29 01:43:38 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/30 03:43:23 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,16 @@ void	push_back(t_stack *s, int value);
 void	print_stack(const char *name, t_stack *s);
 void	free_stack(t_stack *s);
 
-// Prototypes to add (names as you like):
-bool    is_sorted(const t_stack *a);
-void    index_compress(t_stack *a);           // assign index to each node (0..n-1)
-void    sort_small(t_stack *a, t_stack *b);   // handle n<=5 quickly
-void    sort_turk(t_stack *a, t_stack *b);    // main greedy loop
+// Prototypes to add
+bool	is_sorted(const t_stack *a);
+void	index_compress(t_stack *a);           // assign index to each node (0..n-1)
+void	sort_small(t_stack *a, t_stack *b);   // handle n<=5 quickly
+void	sort_turk(t_stack *a, t_stack *b);    // main greedy loop
 
 // Cost helpers:
-int     size(const t_stack *s);               // or just use s->size
-int     pos_of_value(const t_stack *s, int index); // position (0-based) of node with given index
-int     rot_cost(int len, int pos);           // min cost to bring pos to top (ra vs rra)
-int     find_insert_pos_b(const t_stack *b, int a_index);
-void    exec_cheapest_move(t_stack *a, t_stack *b);
+int		pos_in_stack(const t_stack *s, int index); // position (0-based) of node with given index
+int		rot_cost(int len, int pos);           // min cost to bring pos to top (ra vs rra)
+int		find_insert_pos_b(const t_stack *b, int a_index);
+void	exec_cheapest_move(t_stack *a, t_stack *b);
 
 #endif

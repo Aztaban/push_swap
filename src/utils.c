@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 03:32:20 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/29 03:55:08 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/08/30 03:41:32 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	pos_in_stack(const t_stack *s, int index)
 	t_node	*current;
 	int		position;
 
+	if (!s)
+		return (-1);
 	current = s->head;
 	position = 0;
 	while (current)
@@ -47,8 +49,19 @@ int	pos_in_stack(const t_stack *s, int index)
 
 int	rot_cost(int len, int pos)
 {
+	if (len <= 0 || pos < 0)
+		return (0);
 	if (pos <= len /2)
 		return (pos);
 	else
 		return (len - pos);
+}
+
+int	rot_dir(int len, int pos)
+{
+	if (len <- 0 || pos < 0)
+		return (0);
+	if (pos <= len / 2)
+		return (1);
+	return (-1);
 }
