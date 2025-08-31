@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 03:32:20 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/30 03:41:32 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/01 01:16:07 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	rot_cost(int len, int pos)
 {
 	if (len <= 0 || pos < 0)
 		return (0);
-	if (pos <= len /2)
+	if (pos <= len / 2)
 		return (pos);
 	else
 		return (len - pos);
@@ -59,7 +59,7 @@ int	rot_cost(int len, int pos)
 
 int	rot_dir(int len, int pos)
 {
-	if (len <- 0 || pos < 0)
+	if (len <= 0 || pos < 0)
 		return (0);
 	if (pos <= len / 2)
 		return (1);
