@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 03:32:20 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/01 01:16:07 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/01 18:09:44 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,27 @@ int	rot_dir(int len, int pos)
 	if (pos <= len / 2)
 		return (1);
 	return (-1);
+}
+
+void	finalize_sort(t_stack *a, t_stack *b)
+{
+	int	pos_a;
+	int	dir_a;
+	int	b_top_index;
+
+	while (b->size > 0)
+	{
+		b_top_index = b->head->index;
+		pos_a = find_insert_pos_a(a, b_top_index);
+		dir_a = rot_dir(a->size, pos_a);
+		while (pos != 0)
+		{
+			if (dir == 1)
+				rb(b);
+			else
+				rrb(b);
+			pos = pos_in_stack(b, get_max_index(b));
+		}
+		pa(a, b);
+	}
 }

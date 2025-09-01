@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 00:30:50 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/01 01:12:12 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/01 17:49:08 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,25 @@
 t_move	calculate_move_cost(const t_stack *a, const t_stack *b, int a_index)
 {
 	t_move	move;
+	int		cost_a;
+	int		cost_b;
 
 	move.index = a_index;
 	move.pos_a = pos_in_stack(a, a_index);
 	move.pos_b = find_insert_pos_b(b, a_index);
 	move.dir_a = rot_dir(a->size, move.pos_a);
 	move.dir_b = rot_dir(b->size, move.pos_b);
-	move.cost = (rot_cost(a->size, move.pos_a) + rot_cost(b->size, move.pos_b));
+	cost_a = rot_cost(a->size, move.pos_a);
+	cost_b = rot_cost(b->size, move.pos_b);
+	if (move.dir_a != 0 && move.dir_a == move.dir_b)
+	{
+		if (cost_a > cost_b)
+			move.cost = cost_a;
+		else
+			move.cost = cost_b;
+	}
+	else
+		move.cost = cost_a + cost_b;		
 	return (move);
 }
 

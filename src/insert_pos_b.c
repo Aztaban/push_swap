@@ -1,38 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   insert_pos.c                                       :+:      :+:    :+:   */
+/*   insert_pos_b.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 00:07:28 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/01 01:30:26 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/01 17:50:19 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	get_min_max_idx(t_stack *s, int *min, int *max)
+int	get_min_index(t_stack *s)
 {
 	t_node	*current;
+	int		min;
 
 	if (!s || s->size == 0)
-	{
-		*min = -1;
-		*max = -1;
-		return ;
-	}
+		return (-1);
 	current = s->head;
-	*min = current->index;
-	*max = current->index;
+	min = current->index;
+	current = current->next;
 	while (current)
 	{
 		if (current->index < min)
 			min = current->index;
+		current = current->next;
+	}
+	return (min);
+}
+
+int	get_max_index(t_stack *s)
+{
+	t_node	*current;
+	int		max;
+
+	if (!s || s->size == 0)
+		return (-1);
+	current = s->head;
+	max = current->index;
+	current = current->next;
+	while (current)
+	{
 		if (current->index > max)
 			max = current->index;
 		current = current->next;
 	}
+	return (max);
 }
 
 static int	find_between_nodes(const t_stack *b, int a_index)
@@ -69,10 +84,11 @@ int	find_insert_pos_b(const t_stack *b, int a_index)
 
 	if (!b || b->size == 0)
 		return (0);
-	get_min_max(b, &bmin, &bmax);
+	bmin = get_min_index(b);
+	bmax = get_max_index(b);
 	if (a_index > bmax || a_index < bmin)
 	{
-		pos_max = pos_of_value(b, bmax);
+		pos_max = pos_in_stack(b, bmax);
 		if (pos_max < 0 || (pos_max + 1) == b->size)
 			return (0);
 		return (pos_max + 1);

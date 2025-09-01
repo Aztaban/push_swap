@@ -6,16 +6,65 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:56:16 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/30 00:05:56 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/01 17:32:57 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	sort_three(t_stack *a)
+{
+	int	top;
+	int	mid;
+	int	bot;
+
+	if (a->size != 3)
+		return ;
+	top = a->head->index;
+	mid = a->head->next->index;
+	bot = a->head->next->next->index;
+	if (top > mid && mid < bot && top < bot)
+		sa(a);
+	else if (top > mid && mid > bot)
+	{
+		sa(a);
+		rra(a);
+	}
+	else if (top > mid && mid < bot && top > bot)
+		ra(a);
+	else if (top < mid && mid > bot && top < bot)
+	{
+		sa(a);
+		ra(a);
+	}
+	else if (top < mid && mid > bot && top > bot)
+		rra(a);
+}
+
+void	align_stack(t_stack *a)
+{
+	int	min;
+	int	pos;
+	int	dir;
+
+	min = get_min_index(a);
+	pos = pos_in_stack(a, min);
+	dir = rot_dir(a->size, pos);
+	while (pos != 0)
+	{
+		if (dir == 1)
+			ra(a);
+		else
+			rra(a);
+		pos = pos_in_stack(a, min);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
+	t_move	move;
 
 	if (argc < 2)
 		return (EXIT_SUCCESS);
@@ -30,10 +79,17 @@ int	main(int argc, char **argv)
 		write(STDERR_FILENO, "Error\n", 6);
 		return (free_stack(a), free_stack(b), EXIT_FAILURE);
 	}
-	// should i check by indexes or the real value before indexing?
 	index_compress(a);
-	if (!is_sorted(a))
-		// TODO: Here will be the sorting magic
+	while (!is_sorted(a))
+	{
+		while (a->size > 3)
+		{
+			move = find_best_move(a, b);
+			execute_move(a, b, move);
+		}
+		sort_three(a);
+		finalize_sort(a, b);
+	}
 	print_stack("Stack A", a);
 	return (free_stack(a), free_stack(b), EXIT_SUCCESS);
 }

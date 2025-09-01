@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:21:59 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/01 01:14:34 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/01 17:34:00 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,17 @@ void	free_stack(t_stack *s);
 // Prototypes to add
 bool	is_sorted(const t_stack *a);
 void	index_compress(t_stack *a);
-void	sort_small(t_stack *a, t_stack *b);   // handle n<=5 quickly
-void	sort_turk(t_stack *a, t_stack *b);    // main greedy loop
+int		get_max_index(t_stack *s);
+int		get_min_index(t_stack *s);
 
 // Cost helpers:
 int		pos_in_stack(const t_stack *s, int index);
 int		rot_cost(int len, int pos);
 int		rot_dir(int len, int pos);
 int		find_insert_pos_b(const t_stack *b, int a_index);
-void	compute_best_move(const t_stack *a, const t_stack *b, t_move *out);
+t_move	calculate_move_cost(const t_stack *a, const t_stack *b, int a_index);
+t_move	find_best_move(const t_stack *a, const t_stack *b);
+void	finalize_sort(t_stack *a, t_stack *b);
+void	execute_move(t_stack *a, t_stack *b, t_move move);
 
 #endif
