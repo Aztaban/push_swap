@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 02:55:17 by mjusta            #+#    #+#             */
-/*   Updated: 2025/08/29 01:07:01 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/02 00:40:21 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,12 @@ static bool	check_duplicates(t_stack *s)
 static bool	parse_numbers(char **nums, t_stack *a)
 {
 	int		i;
+	int		parsed;
 	int		value;
 	bool	err;
 
 	i = 0;
+	parsed = 0;
 	while (nums[i])
 	{
 		if (!is_valid_number(nums[i]))
@@ -126,8 +128,11 @@ static bool	parse_numbers(char **nums, t_stack *a)
 		if (err)
 			return (false);
 		push_back(a, value);
+		parsed++;
 		i++;
 	}
+	if (parsed == 0)
+		return (false);
 	return (!check_duplicates(a));
 }
 
