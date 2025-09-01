@@ -6,13 +6,13 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 00:07:28 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/01 17:50:19 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/01 21:53:14 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	get_min_index(t_stack *s)
+int	get_min_index(const t_stack *s)
 {
 	t_node	*current;
 	int		min;
@@ -31,7 +31,7 @@ int	get_min_index(t_stack *s)
 	return (min);
 }
 
-int	get_max_index(t_stack *s)
+int	get_max_index(const t_stack *s)
 {
 	t_node	*current;
 	int		max;

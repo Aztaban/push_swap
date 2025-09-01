@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 03:32:20 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/01 18:09:44 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/01 22:35:16 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,26 @@ int	rot_dir(int len, int pos)
 void	finalize_sort(t_stack *a, t_stack *b)
 {
 	int	pos_a;
-	int	dir_a;
+	int	rotation;
 	int	b_top_index;
 
 	while (b->size > 0)
 	{
 		b_top_index = b->head->index;
 		pos_a = find_insert_pos_a(a, b_top_index);
-		dir_a = rot_dir(a->size, pos_a);
-		while (pos != 0)
+		if (pos_a <= a->size / 2)
 		{
-			if (dir == 1)
-				rb(b);
-			else
-				rrb(b);
-			pos = pos_in_stack(b, get_max_index(b));
+			rotation = pos_a;
+			while (rotation-- > 0)
+				ra(a);
+		}
+		else
+		{
+			rotation = a->size - pos_a;
+			while (rotation-- > 0)
+				rra(a);
 		}
 		pa(a, b);
 	}
+	align_stack(a);
 }

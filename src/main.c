@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:56:16 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/01 17:32:57 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/01 22:22:56 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	main(int argc, char **argv)
 		return (free_stack(a), free_stack(b), EXIT_FAILURE);
 	}
 	index_compress(a);
-	while (!is_sorted(a))
+	if (!is_sorted(a))
 	{
 		while (a->size > 3)
 		{
@@ -90,7 +90,7 @@ int	main(int argc, char **argv)
 		sort_three(a);
 		finalize_sort(a, b);
 	}
-	print_stack("Stack A", a);
+	//print_stack("Stack A", a);
 	return (free_stack(a), free_stack(b), EXIT_SUCCESS);
 }
 
