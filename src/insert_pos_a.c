@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 21:34:29 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/01 21:50:58 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/02 00:13:36 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,20 @@ static int	find_between_nodes_a(const t_stack *a, int b_index)
 	return (0);
 }
 
-int find_insert_pos_a(const t_stack *a, int b_index)
+int	find_insert_pos_a(const t_stack *a, int b_index)
 {
-    int amin;
-    int amax;
-    int pos_min;
+	int	amin;
+	int	amax;
+	int	pos_min;
 
-    if (!a || a->size == 0)
-        return (0);
-    amin = get_min_index((t_stack *)a);
-    amax = get_max_index((t_stack *)a);
-    if (b_index < amin || b_index > amax)
-    {
-        // place before the current min (i.e., rotate min to top)
-        pos_min = pos_in_stack(a, amin);
-        return pos_min;
-    }
-    return find_between_nodes_a(a, b_index);
+	if (!a || a->size == 0)
+		return (0);
+	amin = get_min_index(a);
+	amax = get_max_index(a);
+	if (b_index < amin || b_index > amax)
+	{
+		pos_min = pos_in_stack(a, amin);
+		return (pos_min);
+	}
+	return (find_between_nodes_a(a, b_index));
 }

@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 00:07:28 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/01 21:53:14 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/01 23:25:38 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,13 @@ int	find_insert_pos_b(const t_stack *b, int a_index)
 
 	if (!b || b->size == 0)
 		return (0);
+	if (b->size == 1)
+	{
+		if (a_index > b->head->index)
+			return (0);
+		else
+			return (1);
+	}
 	bmin = get_min_index(b);
 	bmax = get_max_index(b);
 	if (a_index > bmax || a_index < bmin)

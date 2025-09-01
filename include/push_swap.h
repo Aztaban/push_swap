@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:21:59 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/01 23:06:04 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/01 23:29:13 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,13 @@ int		find_insert_pos_b(const t_stack *b, int a_index);
 int		find_insert_pos_a(const t_stack *a, int b_index);
 
 // move
-t_move	calculate_move_cost(const t_stack *a, const t_stack *b, int a_index);
 t_move	find_best_move(const t_stack *a, const t_stack *b);
 
 // sort
 void	finalize_sort(t_stack *a, t_stack *b);
 void	align_stack(t_stack *a);
+void	seed_b_descending(t_stack *a, t_stack *b);
+void	sort_three(t_stack *a);
 
 // execute
 void	execute_move(t_stack *a, t_stack *b, t_move move);

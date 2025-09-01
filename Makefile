@@ -6,7 +6,7 @@
 #    By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/05 00:43:12 by mjusta            #+#    #+#              #
-#    Updated: 2025/09/01 23:09:10 by mjusta           ###   ########.fr        #
+#    Updated: 2025/09/01 23:21:40 by mjusta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC = \
 		$(SRC_DIR)/normalize.c \
 		$(SRC_DIR)/utils.c \
 		$(SRC_DIR)/cost.c \
+		$(SRC_DIR)/sort.c \
 		$(SRC_DIR)/execute_move.c \
 		$(SRC_DIR)/exec_utils.c \
 		$(SRC_DIR)/insert_pos_a.c \
