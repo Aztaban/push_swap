@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 01:07:42 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/02 23:40:55 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/03 00:04:48 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ void	free_stack(t_stack *s)
 	free(s);
 }
 
+/**
+ * @brief Initialize both stacks A and B.
+ *
+ * Allocates memory, parses argv, and exits with Error if invalid.
+ */
 void	init_stacks(t_stack **a, t_stack **b, int argc, char **argv)
 {
 	if (argc < 2)

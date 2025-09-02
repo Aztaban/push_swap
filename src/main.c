@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:56:16 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/02 23:37:34 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/03 00:05:17 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	main(int argc, char **argv)
 	t_stack	*b;
 	t_move	move;
 
-	//a = NULL;
-	//b = NULL;
 	init_stacks(&a, &b, argc, argv);
 	index_compress(a);
 	if (!is_sorted(a))
