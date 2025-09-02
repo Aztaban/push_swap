@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:56:16 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/01 23:59:24 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/02 23:37:34 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,9 @@ int	main(int argc, char **argv)
 	t_stack	*b;
 	t_move	move;
 
-	if (argc < 2)
-		return (EXIT_SUCCESS);
-	a = create_stack();
-	if (!a)
-		return (EXIT_FAILURE);
-	b = create_stack();
-	if (!b)
-		return (free_stack(a), EXIT_FAILURE);
-	if (!parse_args(argc, argv, a))
-	{
-		write(STDERR_FILENO, "Error\n", 6);
-		return (free_stack(a), free_stack(b), EXIT_FAILURE);
-	}
+	//a = NULL;
+	//b = NULL;
+	init_stacks(&a, &b, argc, argv);
 	index_compress(a);
 	if (!is_sorted(a))
 	{

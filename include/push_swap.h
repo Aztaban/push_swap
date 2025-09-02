@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:21:59 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/01 23:29:13 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/02 23:42:05 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,12 @@ void	rrr(t_stack *a, t_stack *b);
 
 // parsing
 bool	parse_args(int argc, char **argv, t_stack *a);
-
-// helpers
-t_stack	*create_stack(void);
-void	push_front(t_stack *s, int value);
-void	push_back(t_stack *s, int value);
-void	print_stack(const char *name, t_stack *s);
-void	free_stack(t_stack *s);
-
-// Prototypes to add
-bool	is_sorted(const t_stack *a);
 void	index_compress(t_stack *a);
-int		get_max_index(const t_stack *s);
-int		get_min_index(const t_stack *s);
+
+// stack 
+void	init_stacks(t_stack **a, t_stack **b, int argc, char **argv);
+void	push_back(t_stack *s, int value);
+void	free_stack(t_stack *s);
 
 // Cost helpers:
 int		pos_in_stack(const t_stack *s, int index);
@@ -95,6 +88,9 @@ void	finalize_sort(t_stack *a, t_stack *b);
 void	align_stack(t_stack *a);
 void	seed_b_descending(t_stack *a, t_stack *b);
 void	sort_three(t_stack *a);
+bool	is_sorted(const t_stack *a);
+int		get_max_index(const t_stack *s);
+int		get_min_index(const t_stack *s);
 
 // execute
 void	execute_move(t_stack *a, t_stack *b, t_move move);
