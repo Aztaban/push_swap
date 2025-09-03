@@ -6,33 +6,59 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:56:16 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 00:05:17 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/03 03:28:21 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * @brief Main sorting using optimized Turk algorithm.
+ * Uses chunk pushing for better performance on large stacks.
+ */
+static void	turk_sort(t_stack *a, t_stack *b)
+{
+	t_move	move;
+
+	/* Phase 1: Smart push to B using chunks */
+	chunk_push_to_b(a, b);
+	
+	/* Phase 2: Sort remaining 3 in A */
+	if (a->size == 3 && !is_sorted(a))
+		sort_three(a);
+	else if (a->size == 2 && !is_sorted(a))
+		sa(a);
+	
+	/* Phase 3: Greedy pull back from B */
+	while (b->size > 0)
+	{
+		move = find_best_move_ba(a, b);
+		execute_move_ba(a, b, move);
+	}
+	
+	/* Phase 4: Align minimum to top */
+	align_stack(a);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
-	t_move	move;
 
 	init_stacks(&a, &b, argc, argv);
 	index_compress(a);
-	if (!is_sorted(a))
-	{
-		if (a->size > 3)
-			seed_b_descending(a, b);
-		while (a->size > 3)
-		{
-			move = find_best_move(a, b);
-			execute_move(a, b, move);
-		}
+	
+	if (is_sorted(a))
+		return (free_stack(b), free_stack(a),EXIT_SUCCESS);
+	if (a->size == 2)
+		sa(a);
+	else if (a->size == 3)
 		sort_three(a);
-		finalize_sort(a, b);
-	}
-	return (free_stack(a), free_stack(b), EXIT_SUCCESS);
+	else if (a->size <= 5)
+		sort_small(a, b);
+	else
+		turk_sort(a, b);
+	return (free_stack(b), free_stack(a),EXIT_SUCCESS);
 }
 
 /* int	main(int argc, char **argv)

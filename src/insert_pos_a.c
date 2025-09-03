@@ -6,52 +6,60 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 21:34:29 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/02 00:13:36 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/03 03:01:28 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	find_between_nodes_a(const t_stack *a, int b_index)
+/**
+ * @brief Find position for element between two values.
+ * Returns position where element should be inserted.
+ */
+static int	find_slot_position(const t_stack *a, int b_idx)
 {
-	t_node	*current;
-	t_node	*next;
-	int		i;
+	t_node	*cur;
+	t_node	*nxt;
+	int		pos;
 
-	current = a->head;
-	i = 0;
-	while (current)
+	cur = a->head;
+	pos = 0;
+	while (cur)
 	{
-		if (current->next)
-			next = current->next;
-		else
-			next = a->head;
-		if (current->index < b_index && b_index < next->index)
+		nxt = cur->next ? cur->next : a->head;
+		/* Found the slot between cur and nxt */
+		if (cur->index < b_idx && b_idx < nxt->index)
 		{
-			if (i + 1 == a->size)
+			if (pos + 1 >= a->size)
 				return (0);
-			return (i + 1);
+			return (pos + 1);
 		}
-		current = current->next;
-		i++;
+		cur = cur->next;
+		pos++;
 	}
 	return (0);
 }
 
-int	find_insert_pos_a(const t_stack *a, int b_index)
+/**
+ * @brief Find where in A to insert element from B.
+ * Handles edge cases for min/max values efficiently.
+ */
+int	find_insert_pos_a(const t_stack *a, int b_idx)
 {
-	int	amin;
-	int	amax;
-	int	pos_min;
+	int	min_idx;
+	int	max_idx;
 
 	if (!a || a->size == 0)
 		return (0);
-	amin = get_min_index(a);
-	amax = get_max_index(a);
-	if (b_index < amin || b_index > amax)
-	{
-		pos_min = pos_in_stack(a, amin);
-		return (pos_min);
-	}
-	return (find_between_nodes_a(a, b_index));
+	
+	/* Get min and max only once */
+	min_idx = get_min_index(a);
+	max_idx = get_max_index(a);
+	
+	/* Element is outside range - goes above minimum */
+	if (b_idx < min_idx || b_idx > max_idx)
+		return (pos_in_stack(a, min_idx));
+	
+	/* Element fits between existing values */
+	return (find_slot_position(a, b_idx));
 }

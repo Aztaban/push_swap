@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:21:59 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 00:03:49 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/03 03:05:10 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,24 +89,27 @@ int		find_insert_pos_a(const t_stack *a, int b_index);
 
 // move
 
-t_move	find_best_move(const t_stack *a, const t_stack *b);
+t_move	find_best_move_ba(const t_stack *a, const t_stack *b);
 
 // sort
 
 void	finalize_sort(t_stack *a, t_stack *b);
 void	align_stack(t_stack *a);
-void	seed_b_descending(t_stack *a, t_stack *b);
 void	sort_three(t_stack *a);
+void	sort_small(t_stack *a, t_stack *b);
 bool	is_sorted(const t_stack *a);
 int		get_max_index(const t_stack *s);
 int		get_min_index(const t_stack *s);
 
 // execute
 
-void	execute_move(t_stack *a, t_stack *b, t_move move);
+void	execute_move_ba(t_stack *a, t_stack *b, t_move move);
+void	execute_move_ab(t_stack *a, t_stack *b, t_move move);
 void	do_rr_both(t_stack *a, t_stack *b, int times);
 void	do_rrr_both(t_stack *a, t_stack *b, int times);
 void	do_rot_a(t_stack *a, int dir, int times);
 void	do_rot_b(t_stack *b, int dir, int times);
+
+void	chunk_push_to_b(t_stack *a, t_stack *b);
 
 #endif
