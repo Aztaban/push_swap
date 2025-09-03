@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 3025/09/02 22:12:04 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 00:24:59 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/03 04:01:17 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ static int	process_instructions(t_stack *a, t_stack *b)
 	return (0);
 }
 
-
 /**
  * @brief Entry point of the checker program.
  * Initializes stacks, processes instructions, and prints the result.
@@ -108,4 +107,4 @@ int	main(int argc, char **argv)
 	free_stack(a);
 	free_stack(b);
 	return (0);
-} 
+}

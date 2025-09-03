@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 02:42:29 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 03:24:09 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/03 04:02:09 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 /**
  * @brief Convert stack values to an array.
  * 
- * Used for index compression — this array will be sorted to assign normalized indices.
+ * Used for index compression — this array will be sorted to assign normalized 
+ * indices.
  * 
  * @param s The stack to convert.
  * @return int* Pointer to the newly allocated array, or NULL on error.
@@ -77,7 +78,8 @@ static void	insert_sort(int *arr, int len)
  * @param arr Sorted array.
  * @param len Array length.
  * @param target Value to find.
- * @return int Index in array or -1 if not found (shouldn’t happen in this usage).
+ * @return int Index in array or -1 if not found (shouldn’t 
+ * happen in this usage).
  */
 static int	bsearch_int(const int *arr, int len, int target)
 {

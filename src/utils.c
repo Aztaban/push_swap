@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 03:32:20 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 03:18:16 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/03 04:01:30 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ bool	is_sorted(const t_stack *s)
 	}
 	return (true);
 }
-
 
 /**
  * @brief Find the position of a node with the given index in a stack.
