@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 23:17:10 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 03:20:09 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/03 04:06:18 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ void	align_stack(t_stack *a)
  * 
  * Moves the smallest elements from A to B until only 3 are left,
  * sorts the 3 elements in A, then reinserts elements from B back to A
- * using cost-based reinsertion. Finally, aligns A to have the smallest value at the top.
+ * using cost-based reinsertion. Finally, aligns A to have the smallest 
+ * value at the top.
  * 
  * @param a Stack A (main stack)
  * @param b Stack B (auxiliary stack)

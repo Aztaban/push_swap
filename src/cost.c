@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 00:30:50 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 03:31:12 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/03 04:09:40 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,12 @@ static t_move	calc_move_cost_ba(const t_stack *a, const t_stack *b, int b_idx)
 	move.index = b_idx;
 	move.pos_b = pos_in_stack(b, b_idx);
 	move.pos_a = find_insert_pos_a(a, b_idx);
-	
-	/* Get individual costs */
 	costa = min_rotation_cost(a->size, move.pos_a);
 	costb = min_rotation_cost(b->size, move.pos_b);
-	
-	/* Determine optimal directions */
 	move.dir_a = best_rotation_dir(a->size, move.pos_a);
 	move.dir_b = best_rotation_dir(b->size, move.pos_b);
-	
-	/* Calculate total cost */
 	if (move.dir_a == move.dir_b)
 	{
-		/* Same direction - can combine rotations */
 		if (costa > costb)
 			move.cost = costa;
 		else

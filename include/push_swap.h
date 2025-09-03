@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:21:59 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 03:05:10 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/03 04:10:00 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	free_stack(t_stack *s);
 int		pos_in_stack(const t_stack *s, int index);
 int		rot_cost(int len, int pos);
 int		rot_dir(int len, int pos);
-int		find_insert_pos_b(const t_stack *b, int a_index);
 int		find_insert_pos_a(const t_stack *a, int b_index);
 
 // move

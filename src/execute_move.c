@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 01:40:44 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 01:54:45 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/03 04:15:27 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	overlap_both(t_stack *a, t_stack *b, int dir, t_move *move)
 	move->count_b -= shared;
 }
 
-static void	execute_move(t_stack *a, t_stack *b, t_move move)
+void	execute_move_ba(t_stack *a, t_stack *b, t_move move)
 {
 	move.count_a = rot_count(a->size, move.pos_a, move.dir_a);
 	move.count_b = rot_count(b->size, move.pos_b, move.dir_b);
@@ -47,16 +47,5 @@ static void	execute_move(t_stack *a, t_stack *b, t_move move)
 		overlap_both(a, b, move.dir_a, &move);
 	do_rot_a(a, move.dir_a, move.count_a);
 	do_rot_b(b, move.dir_b, move.count_b);
-}
-
-void	execute_move_ba(t_stack *a, t_stack *b, t_move move)
-{
-	execute_move(a, b, move);
 	pa(a, b);
-}
-
-void	execute_move_ab(t_stack *a, t_stack *b, t_move move)
-{
-	execute_move(a, b, move);
-	pb(a, b);
 }

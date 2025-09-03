@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   insert_pos_b.c                                     :+:      :+:    :+:   */
+/*   insert_position.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/30 00:07:28 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/01 23:25:38 by mjusta           ###   ########.fr       */
+/*   Created: 2025/09/01 21:34:29 by mjusta            #+#    #+#             */
+/*   Updated: 2025/09/03 04:09:20 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,56 +49,54 @@ int	get_max_index(const t_stack *s)
 	}
 	return (max);
 }
-
-static int	find_between_nodes(const t_stack *b, int a_index)
+/**
+ * @brief Find position for element between two values.
+ * Returns position where element should be inserted.
+ */
+static int	find_slot_position(const t_stack *a, int b_idx)
 {
-	t_node	*current;
-	t_node	*next;
-	int		i;
+	t_node	*cur;
+	t_node	*nxt;
+	int		pos;
 
-	current = b->head;
-	i = 0;
-	while (current)
+	cur = a->head;
+	pos = 0;
+	while (cur)
 	{
-		if (current->next)
-			next = current->next;
-		else
-			next = b->head;
-		if (current->index > a_index && a_index > next->index)
+		nxt = cur->next ? cur->next : a->head;
+		/* Found the slot between cur and nxt */
+		if (cur->index < b_idx && b_idx < nxt->index)
 		{
-			if (i + 1 == b->size)
+			if (pos + 1 >= a->size)
 				return (0);
-			return (i + 1);
+			return (pos + 1);
 		}
-		current = current->next;
-		i++;
+		cur = cur->next;
+		pos++;
 	}
 	return (0);
 }
 
-int	find_insert_pos_b(const t_stack *b, int a_index)
+/**
+ * @brief Find where in A to insert element from B.
+ * Handles edge cases for min/max values efficiently.
+ */
+int	find_insert_pos_a(const t_stack *a, int b_idx)
 {
-	int	bmin;
-	int	bmax;
-	int	pos_max;
+	int	min_idx;
+	int	max_idx;
 
-	if (!b || b->size == 0)
+	if (!a || a->size == 0)
 		return (0);
-	if (b->size == 1)
-	{
-		if (a_index > b->head->index)
-			return (0);
-		else
-			return (1);
-	}
-	bmin = get_min_index(b);
-	bmax = get_max_index(b);
-	if (a_index > bmax || a_index < bmin)
-	{
-		pos_max = pos_in_stack(b, bmax);
-		if (pos_max < 0 || (pos_max + 1) == b->size)
-			return (0);
-		return (pos_max + 1);
-	}
-	return (find_between_nodes(b, a_index));
+	
+	/* Get min and max only once */
+	min_idx = get_min_index(a);
+	max_idx = get_max_index(a);
+	
+	/* Element is outside range - goes above minimum */
+	if (b_idx < min_idx || b_idx > max_idx)
+		return (pos_in_stack(a, min_idx));
+	
+	/* Element fits between existing values */
+	return (find_slot_position(a, b_idx));
 }

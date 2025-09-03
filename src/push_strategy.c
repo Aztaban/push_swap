@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 03:02:12 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 03:02:19 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/03 03:58:42 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 static int	get_chunk_size(int total_size)
 {
 	if (total_size <= 100)
-		return (20);
+		return (30);
 	else if (total_size <= 500)
-		return (45);
+		return (60);
 	else
-		return (65);
+		return (85);
 }
 
 /**
@@ -79,21 +79,17 @@ void	chunk_push_to_b(t_stack *a, t_stack *b)
 	chunk_size = get_chunk_size(total);
 	chunk_start = 0;
 	mid_point = total / 2;
-	
 	while (a->size > 3)
 	{
 		chunk_end = chunk_start + chunk_size;
 		if (chunk_end > total)
 			chunk_end = total;
-		
-		/* Push current chunk */
 		while (a->size > 3 && rotations_to_chunk(a, chunk_start, chunk_end) < a->size)
 		{
 			if (in_chunk(a->head->index, chunk_start, chunk_end))
 			{
 				pb(a, b);
-				/* Optimize B placement for elements near middle */
-				if (b->size > 1 && b->head->index < mid_point && b->head->index < b->head->next->index)
+				if (b->size > 1 && b->head->index < mid_point)
 					rb(b);
 			}
 			else
