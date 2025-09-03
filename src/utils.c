@@ -6,12 +6,18 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 03:32:20 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/01 23:47:25 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/03 03:18:16 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * @brief Check if a stack is sorted in ascending order based on index.
+ * 
+ * @param s The stack to check.
+ * @return true if sorted, false otherwise.
+ */
 bool	is_sorted(const t_stack *s)
 {
 	t_node	*current;
@@ -28,6 +34,14 @@ bool	is_sorted(const t_stack *s)
 	return (true);
 }
 
+
+/**
+ * @brief Find the position of a node with the given index in a stack.
+ * 
+ * @param s The stack to search.
+ * @param index The target index to find.
+ * @return The position of the index, or -1 if not found.
+ */
 int	pos_in_stack(const t_stack *s, int index)
 {
 	t_node	*current;
@@ -47,6 +61,13 @@ int	pos_in_stack(const t_stack *s, int index)
 	return (-1);
 }
 
+/**
+ * @brief Calculate the minimal rotation cost to bring an element to the top.
+ * 
+ * @param len The total number of elements in the stack.
+ * @param pos The current position of the element.
+ * @return Number of operations needed.
+ */
 int	rot_cost(int len, int pos)
 {
 	if (len <= 0 || pos < 0)
@@ -57,6 +78,13 @@ int	rot_cost(int len, int pos)
 		return (len - pos);
 }
 
+/**
+ * @brief Determine rotation direction for minimal cost.
+ * 
+ * @param len The total number of elements in the stack.
+ * @param pos The current position of the element.
+ * @return 1 for rotate (ra/rb), -1 for reverse rotate (rra/rrb), 0 for invalid.
+ */
 int	rot_dir(int len, int pos)
 {
 	if (len <= 0 || pos < 0)
@@ -64,14 +92,4 @@ int	rot_dir(int len, int pos)
 	if (pos <= len / 2)
 		return (1);
 	return (-1);
-}
-
-void	seed_b_descending(t_stack *a, t_stack *b)
-{
-	if (a->size > 0)
-		pb(a, b);
-	if (a->size > 0)
-		pb(a, b);
-	if (b->size == 2 && b->head->index < b->head->next->index)
-		sb(b);
 }

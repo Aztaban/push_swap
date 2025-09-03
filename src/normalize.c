@@ -6,12 +6,20 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 02:42:29 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/01 01:16:44 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/03 03:24:09 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * @brief Convert stack values to an array.
+ * 
+ * Used for index compression — this array will be sorted to assign normalized indices.
+ * 
+ * @param s The stack to convert.
+ * @return int* Pointer to the newly allocated array, or NULL on error.
+ */
 static int	*to_array(const t_stack *s)
 {
 	int		*arr;
@@ -32,6 +40,14 @@ static int	*to_array(const t_stack *s)
 	return (arr);
 }
 
+/**
+ * @brief Insertion sort for integer array.
+ * 
+ * Simple sorting algorithm.
+ * 
+ * @param arr The array to sort.
+ * @param len Length of the array.
+ */
 static void	insert_sort(int *arr, int len)
 {
 	int	i;
@@ -53,6 +69,16 @@ static void	insert_sort(int *arr, int len)
 	}
 }
 
+/**
+ * @brief Binary search for target value in sorted array.
+ * 
+ * Returns index position for the target — used to assign normalized index.
+ * 
+ * @param arr Sorted array.
+ * @param len Array length.
+ * @param target Value to find.
+ * @return int Index in array or -1 if not found (shouldn’t happen in this usage).
+ */
 static int	bsearch_int(const int *arr, int len, int target)
 {
 	int	low;
@@ -74,6 +100,14 @@ static int	bsearch_int(const int *arr, int len, int target)
 	return (-1);
 }
 
+/**
+ * @brief Compress the stack values into a normalized index range [0, N-1].
+ * 
+ * This avoids working with raw values and enables more efficient comparisons.
+ * It transforms all values into their respective positions in a sorted array.
+ * 
+ * @param s Stack to normalize.
+ */
 void	index_compress(t_stack *s)
 {
 	int		*arr;

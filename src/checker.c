@@ -6,41 +6,50 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 3025/09/02 22:12:04 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 00:05:41 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/03 00:24:59 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-static int	exec_instruction(t_stack *a, t_stack *b, char *op)
+/**
+ * @brief Executes one instruction on the given stacks.
+ * 
+ * Returns 0 if successful, -1 if the instruction is invalid.
+ */
+static int	exec_instruction(t_stack *a, t_stack *b, char *instruction)
 {
-	if (!ft_strncmp(op, "rra", 4))
+	if (!ft_strncmp(instruction, "rra", 4))
 		rra(a);
-	else if (!ft_strncmp(op, "rrb", 4))
+	else if (!ft_strncmp(instruction, "rrb", 4))
 		rrb(b);
-	else if (!ft_strncmp(op, "rrr", 4))
+	else if (!ft_strncmp(instruction, "rrr", 4))
 		rrr(a, b);
-	else if (!ft_strncmp(op, "sa", 3))
+	else if (!ft_strncmp(instruction, "sa", 3))
 		sa(a);
-	else if (!ft_strncmp(op, "sb", 3))
+	else if (!ft_strncmp(instruction, "sb", 3))
 		sb(b);
-	else if (!ft_strncmp(op, "ss", 3))
+	else if (!ft_strncmp(instruction, "ss", 3))
 		ss(a, b);
-	else if (!ft_strncmp(op, "pa", 3))
+	else if (!ft_strncmp(instruction, "pa", 3))
 		pa(a, b);
-	else if (!ft_strncmp(op, "pb", 3))
+	else if (!ft_strncmp(instruction, "pb", 3))
 		pb(a, b);
-	else if (!ft_strncmp(op, "ra", 3))
+	else if (!ft_strncmp(instruction, "ra", 3))
 		ra(a);
-	else if (!ft_strncmp(op, "rb", 3))
+	else if (!ft_strncmp(instruction, "rb", 3))
 		rb(b);
-	else if (!ft_strncmp(op, "rr", 3))
+	else if (!ft_strncmp(instruction, "rr", 3))
 		rr(a, b);
 	else
 		return (-1);
 	return (0);
 }
 
+/**
+ * @brief Prints "OK" if stack a is sorted and stack b is empty,
+ * otherwise prints "KO".
+ */
 static void	print_result(t_stack *a, t_stack *b)
 {
 	if (is_sorted(a) && b->size == 0)
@@ -49,6 +58,11 @@ static void	print_result(t_stack *a, t_stack *b)
 		ft_putstr_fd("KO\n", STDOUT_FILENO);
 }
 
+/**
+ * @brief Reads instructions from stdin and executes them.
+ * 
+ * Returns 0 if all instructions are valid, 1 if an error occurs.
+ */
 static int	process_instructions(t_stack *a, t_stack *b)
 {
 	char	*line;
@@ -72,6 +86,11 @@ static int	process_instructions(t_stack *a, t_stack *b)
 	return (0);
 }
 
+
+/**
+ * @brief Entry point of the checker program.
+ * Initializes stacks, processes instructions, and prints the result.
+ */
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
