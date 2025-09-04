@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 01:07:42 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/05 00:24:58 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/05 00:36:23 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ void	free_stack(t_stack *s)
 	}
 }
 
+/**
+ * @brief Initializes stacks A and B, parses program arguments into A,
+ *        and applies index compression.
+ */
 void	stack_init(int argc, char **argv, t_stack *a, t_stack *b)
 {
 	if (argc < 2)
