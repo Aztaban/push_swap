@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ch_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 00:56:54 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/04 14:41:12 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/04 14:39:57 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,29 +38,26 @@ static bool	swap(t_stack *s)
 }
 
 /**
- * @brief Swap the first two elements of stack A (sa) and print instruction.
+ * @brief Swap the first two elements of stack A (sa).
  */
-void	sa(t_stack *a)
+void	ch_sa(t_stack *a)
 {
-	if (swap(a))
-		ft_printf("sa\n");
+	swap(a);
 }
 
 /**
- * @brief Swap the first two elements of stack B (sb) and print instruction.
+ * @brief Swap the first two elements of stack B (sb).
  */
-void	sb(t_stack *b)
+void	ch_sb(t_stack *b)
 {
-	if (swap(b))
-		ft_printf("sb\n");
+	swap(b);
 }
 
 /**
- * @brief Swap the first two elements of both stacks A and B (ss)
- * and print instruction.
+ * @brief Swap the first two elements of both stacks A and B (ss).
  */
-void	ss(t_stack *a, t_stack *b)
+void	ch_ss(t_stack *a, t_stack *b)
 {
-	if (swap(a) | swap(b))
-		ft_printf("ss\n");
+	swap(a);
+	swap(b);
 }

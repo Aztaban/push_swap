@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   ch_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 00:59:41 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/04 14:36:53 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/04 14:38:33 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,26 @@ static bool	rotate(t_stack *s)
 }
 
 /**
- * @brief Rotate stack A (ra) and print instruction.
+ * @brief Rotate stack A (ra).
  */
-void	ra(t_stack *a)
+void	ch_ra(t_stack *a)
 {
-	if (rotate(a))
-		ft_printf("ra\n");
+	rotate(a);
 }
 
 /**
- * @brief Rotate stack B (rb) and print instruction.
+ * @brief Rotate stack B (rb).
  */
-void	rb(t_stack *b)
+void	ch_rb(t_stack *b)
 {
-	if (rotate(b))
-		ft_printf("rb\n");
+	rotate(b);
 }
 
 /**
- * @brief Rotate both stacks A and B simultaneously (rr)
- * and print instruction.
+ * @brief Rotate both stacks A and B simultaneously (rr).
  */
-void	rr(t_stack *a, t_stack *b)
+void	ch_rr(t_stack *a, t_stack *b)
 {
-	if (rotate(a) | rotate(b))
-		ft_printf("rr\n");
+	rotate(a);
+	rotate(b);
 }

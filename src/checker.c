@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 3025/09/02 22:12:04 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 04:01:17 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/04 13:01:03 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,27 @@
 static int	exec_instruction(t_stack *a, t_stack *b, char *instruction)
 {
 	if (!ft_strncmp(instruction, "rra", 4))
-		rra(a);
+		ch_rra(a);
 	else if (!ft_strncmp(instruction, "rrb", 4))
-		rrb(b);
+		ch_rrb(b);
 	else if (!ft_strncmp(instruction, "rrr", 4))
-		rrr(a, b);
+		ch_rrr(a, b);
 	else if (!ft_strncmp(instruction, "sa", 3))
-		sa(a);
+		ch_sa(a);
 	else if (!ft_strncmp(instruction, "sb", 3))
-		sb(b);
+		ch_sb(b);
 	else if (!ft_strncmp(instruction, "ss", 3))
-		ss(a, b);
+		ch_ss(a, b);
 	else if (!ft_strncmp(instruction, "pa", 3))
-		pa(a, b);
+		ch_pa(a, b);
 	else if (!ft_strncmp(instruction, "pb", 3))
-		pb(a, b);
+		ch_pb(a, b);
 	else if (!ft_strncmp(instruction, "ra", 3))
-		ra(a);
+		ch_ra(a);
 	else if (!ft_strncmp(instruction, "rb", 3))
-		rb(b);
+		ch_rb(b);
 	else if (!ft_strncmp(instruction, "rr", 3))
-		rr(a, b);
+		ch_rr(a, b);
 	else
 		return (-1);
 	return (0);

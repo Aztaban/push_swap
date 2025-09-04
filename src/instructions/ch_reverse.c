@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse.c                                          :+:      :+:    :+:   */
+/*   ch_reverse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 01:01:01 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/04 14:33:21 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/04 14:32:49 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 /**
  * @brief Performs a reverse rotation on a stack.
@@ -40,28 +40,26 @@ static bool	reverse_rotate(t_stack *s)
 }
 
 /**
- * @brief Reverse rotate stack A (rra) and print instruction.
+ * @brief Reverse rotate stack A (rra).
  */
-void	rra(t_stack *a)
+void	ch_rra(t_stack *a)
 {
-	if (reverse_rotate(a))
-		ft_printf("rra\n");
+	reverse_rotate(a);
 }
 
 /**
- * @brief Reverse rotate stack B (rrb) and print instruction..
+ * @brief Reverse rotate stack B (rrb).
  */
-void	rrb(t_stack *b)
+void	ch_rrb(t_stack *b)
 {
-	if (reverse_rotate(b))
-		ft_printf("rrb\n");
+	reverse_rotate(b);
 }
 
 /**
- * @brief Reverse rotate both stacks A and B (rrr) and print instruction.
+ * @brief Reverse rotate both stacks A and B (rrr).
  */
-void	rrr(t_stack *a, t_stack *b)
+void	ch_rrr(t_stack *a, t_stack *b)
 {
-	if (reverse_rotate(a) | reverse_rotate(b))
-		ft_printf("rrr\n");
+	reverse_rotate(a);
+	reverse_rotate(b);
 }

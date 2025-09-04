@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:21:59 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 04:10:00 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/04 12:55:41 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ int		get_min_index(const t_stack *s);
 // execute
 
 void	execute_move_ba(t_stack *a, t_stack *b, t_move move);
-void	execute_move_ab(t_stack *a, t_stack *b, t_move move);
 void	do_rr_both(t_stack *a, t_stack *b, int times);
 void	do_rrr_both(t_stack *a, t_stack *b, int times);
 void	do_rot_a(t_stack *a, int dir, int times);
