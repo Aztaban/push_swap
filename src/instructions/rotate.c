@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 00:59:41 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/04 14:36:53 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/05 00:05:40 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,18 @@ static bool	rotate(t_stack *s)
 /**
  * @brief Rotate stack A (ra) and print instruction.
  */
-void	ra(t_stack *a)
+void	ra(t_stack *a, bool print)
 {
-	if (rotate(a))
+	if (rotate(a) && print)
 		ft_printf("ra\n");
 }
 
 /**
  * @brief Rotate stack B (rb) and print instruction.
  */
-void	rb(t_stack *b)
+void	rb(t_stack *b, bool print)
 {
-	if (rotate(b))
+	if (rotate(b) && print)
 		ft_printf("rb\n");
 }
 
@@ -58,8 +58,8 @@ void	rb(t_stack *b)
  * @brief Rotate both stacks A and B simultaneously (rr)
  * and print instruction.
  */
-void	rr(t_stack *a, t_stack *b)
+void	rr(t_stack *a, t_stack *b, bool print)
 {
-	if (rotate(a) | rotate(b))
+	if ((rotate(a) | rotate(b)) && print)
 		ft_printf("rr\n");
 }

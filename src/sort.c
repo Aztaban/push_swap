@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 23:17:10 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/04 19:04:02 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/05 00:27:16 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,21 @@ static void	sort_three(t_stack *a)
 	mid = a->head->next->index;
 	bot = a->head->next->next->index;
 	if (top > mid && mid < bot && top < bot)
-		sa(a);
+		sa(a, true);
 	else if (top > mid && mid > bot)
 	{
-		sa(a);
-		rra(a);
+		sa(a, true);
+		rra(a, true);
 	}
 	else if (top > mid && mid < bot && top > bot)
-		ra(a);
+		ra(a, true);
 	else if (top < mid && mid > bot && top < bot)
 	{
-		sa(a);
-		ra(a);
+		sa(a, true);
+		ra(a, true);
 	}
 	else if (top < mid && mid > bot && top > bot)
-		rra(a);
+		rra(a, true);
 }
 
 /**
@@ -61,7 +61,7 @@ static void	push_min_to_b(t_stack *a, t_stack *b)
 	direction = rot_dir(a->size, position);
 	rotations = rot_cost(a->size, position);
 	do_rot_a(a, direction, rotations);
-	pb(a, b);
+	pb(a, b, true);
 }
 
 /**
@@ -84,9 +84,9 @@ static void	align_stack(t_stack *a)
 	while (position != 0)
 	{
 		if (direction == 1)
-			ra(a);
+			ra(a, true);
 		else
-			rra(a);
+			rra(a, true);
 		position = pos_in_stack(a, min_idx);
 	}
 }
@@ -109,7 +109,7 @@ void	sort_small(t_stack *a, t_stack *b)
 	if (a->size <= 1)
 		return ;
 	if (a->size == 2)
-		return (sa(a));
+		return (sa(a, true));
 	if (a->size == 3)
 		return (sort_three(a));
 	while (a->size > 3 && !is_sorted(a))

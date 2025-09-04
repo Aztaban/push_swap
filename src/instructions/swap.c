@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 00:56:54 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/04 14:41:12 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/05 00:07:25 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,18 @@ static bool	swap(t_stack *s)
 /**
  * @brief Swap the first two elements of stack A (sa) and print instruction.
  */
-void	sa(t_stack *a)
+void	sa(t_stack *a, bool print)
 {
-	if (swap(a))
+	if (swap(a) && print)
 		ft_printf("sa\n");
 }
 
 /**
  * @brief Swap the first two elements of stack B (sb) and print instruction.
  */
-void	sb(t_stack *b)
+void	sb(t_stack *b, bool print)
 {
-	if (swap(b))
+	if (swap(b) && print)
 		ft_printf("sb\n");
 }
 
@@ -59,8 +59,8 @@ void	sb(t_stack *b)
  * @brief Swap the first two elements of both stacks A and B (ss)
  * and print instruction.
  */
-void	ss(t_stack *a, t_stack *b)
+void	ss(t_stack *a, t_stack *b, bool print)
 {
-	if (swap(a) | swap(b))
+	if ((swap(a) | swap(b)) && print)
 		ft_printf("ss\n");
 }

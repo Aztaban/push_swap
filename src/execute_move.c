@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 01:40:44 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/04 18:27:48 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/05 00:27:37 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,5 @@ void	execute_move_ba(t_stack *a, t_stack *b, t_move move)
 		overlap_both(a, b, move.dir_a, &move);
 	do_rot_a(a, move.dir_a, move.count_a);
 	do_rot_b(b, move.dir_b, move.count_b);
-	pa(a, b);
+	pa(a, b, true);
 }

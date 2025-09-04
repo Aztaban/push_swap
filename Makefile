@@ -6,7 +6,7 @@
 #    By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/05 00:43:12 by mjusta            #+#    #+#              #
-#    Updated: 2025/09/04 14:42:06 by mjusta           ###   ########.fr        #
+#    Updated: 2025/09/05 00:32:29 by mjusta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,11 +38,8 @@ SRC = \
 		$(SRC_DIR)/exec_utils.c \
 		$(SRC_DIR)/insert_position.c \
 		$(SRC_DIR)/instructions/swap.c \
-		$(SRC_DIR)/instructions/ch_swap.c \
 		$(SRC_DIR)/instructions/rotate.c \
-		$(SRC_DIR)/instructions/ch_rotate.c \
 		$(SRC_DIR)/instructions/reverse.c \
-		$(SRC_DIR)/instructions/ch_reverse.c \
 		$(SRC_DIR)/instructions/push.c \
 
 #OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
@@ -72,6 +69,7 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+	$(RM) $(BONUS)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all

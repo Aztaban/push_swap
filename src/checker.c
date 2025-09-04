@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 3025/09/02 22:12:04 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/04 23:28:54 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/05 00:33:24 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,27 @@
 static int	exec_instruction(t_stack *a, t_stack *b, char *instruction)
 {
 	if (!ft_strncmp(instruction, "rra", 4))
-		ch_rra(a);
+		rra(a, false);
 	else if (!ft_strncmp(instruction, "rrb", 4))
-		ch_rrb(b);
+		rrb(b, false);
 	else if (!ft_strncmp(instruction, "rrr", 4))
-		ch_rrr(a, b);
+		rrr(a, b, false);
 	else if (!ft_strncmp(instruction, "sa", 3))
-		ch_sa(a);
+		sa(a, false);
 	else if (!ft_strncmp(instruction, "sb", 3))
-		ch_sb(b);
+		sb(b, false);
 	else if (!ft_strncmp(instruction, "ss", 3))
-		ch_ss(a, b);
+		ss(a, b, false);
 	else if (!ft_strncmp(instruction, "pa", 3))
-		ch_pa(a, b);
+		pa(a, b, false);
 	else if (!ft_strncmp(instruction, "pb", 3))
-		ch_pb(a, b);
+		pb(a, b, false);
 	else if (!ft_strncmp(instruction, "ra", 3))
-		ch_ra(a);
+		ra(a, false);
 	else if (!ft_strncmp(instruction, "rb", 3))
-		ch_rb(b);
+		rb(b, false);
 	else if (!ft_strncmp(instruction, "rr", 3))
-		ch_rr(a, b);
+		rr(a, b, false);
 	else
 		return (-1);
 	return (0);
@@ -92,18 +92,19 @@ static int	process_instructions(t_stack *a, t_stack *b)
  */
 int	main(int argc, char **argv)
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_stack	a;
+	t_stack	b;
 
-	init_stacks(&a, &b, argc, argv);
-	if (process_instructions(a, b) != 0)
+	stack_init(argc, argv, &a, &b);
+	if (process_instructions(&a, &b) != 0)
 	{
 		ft_putstr_fd("Error\n", STDERR_FILENO);
-		free_stack(a);
-		free_stack(b);
+		free_stack(&a);
+		free_stack(&b);
 		return (1);
 	}
-	
-	
-	return (print_result(a, b), free_stack(a), free_stack(b), 0);
+	print_result(&a, &b);
+	free_stack(&a);
+	free_stack(&b);
+	return (0);
 }

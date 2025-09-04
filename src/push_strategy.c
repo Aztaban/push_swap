@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 03:02:12 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/04 23:37:55 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/05 00:28:07 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,12 @@ static void	handle_chunk_push(t_stack *a, t_stack *b, int c_start, int c_end)
 	{
 		if (in_chunk(a->head->index, c_start, c_end))
 		{
-			pb(a, b);
+			pb(a, b, true);
 			if (b->size > 1 && b->head->index < mid)
-				rb(b);
+				rb(b, true);
 		}
 		else
-			ra(a);
+			ra(a, true);
 	}
 }
 

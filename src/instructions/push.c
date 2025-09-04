@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 00:58:48 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/04 14:28:49 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/05 00:03:27 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ static bool	push(t_stack *dst, t_stack *src)
  * @brief Moves the top element from stack B to stack A 
  * and prints a message.
  */
-void	pa(t_stack *a, t_stack *b)
+void	pa(t_stack *a, t_stack *b, bool print)
 {
-	if (push(a, b))
+	if (push(a, b) && print)
 		ft_printf("pa\n");
 }
 
@@ -71,24 +71,8 @@ void	pa(t_stack *a, t_stack *b)
  * @brief Moves the top element from stack A to stack B
  * and prints a message.
  */
-void	pb(t_stack *a, t_stack *b)
+void	pb(t_stack *a, t_stack *b, bool print)
 {
-	if (push(b, a))
+	if (push(b, a) && print)
 		ft_printf("pb\n");
-}
-
-/**
- * @brief Moves the top element from stack B to stack A.
- */
-void	ch_pa(t_stack *a, t_stack *b)
-{
-	push(a, b);
-}
-
-/**
- * @brief Moves the top element from stack A to stack B.
- */
-void	ch_pb(t_stack *a, t_stack *b)
-{
-	push(b, a);
 }
