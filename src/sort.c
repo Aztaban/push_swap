@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 23:17:10 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 04:06:18 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/04 19:04:02 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * @brief Sorts exactly 3 elements in stack A.
  * Uses minimal moves based on all 6 possible permutations.
  */
-void	sort_three(t_stack *a)
+static void	sort_three(t_stack *a)
 {
 	int	top;
 	int	mid;
@@ -68,7 +68,7 @@ static void	push_min_to_b(t_stack *a, t_stack *b)
  * @brief Aligns stack A so minimum is at top.
  * Final step to ensure sorted order starts from index 0.
  */
-void	align_stack(t_stack *a)
+static void	align_stack(t_stack *a)
 {
 	int	min_idx;
 	int	position;
@@ -106,12 +106,15 @@ void	sort_small(t_stack *a, t_stack *b)
 {
 	t_move	move;
 
+	if (a->size <= 1)
+		return ;
+	if (a->size == 2)
+		return (sa(a));
+	if (a->size == 3)
+		return (sort_three(a));
 	while (a->size > 3 && !is_sorted(a))
 		push_min_to_b(a, b);
-	if (a->size == 3 && !is_sorted(a))
-		sort_three(a);
-	else if (a->size == 2 && !is_sorted(a))
-		sa(a);
+	sort_three(a);
 	while (b->size > 0)
 	{
 		move = find_best_move_ba(a, b);
@@ -121,18 +124,16 @@ void	sort_small(t_stack *a, t_stack *b)
 }
 
 /**
- * @brief Final reinsertion phase from B to A for large input sort.
- * 
- * Used after LIS-based distribution. Selects and executes the best move
- * until B is empty, then aligns A with the smallest element at the top.
- * 
- * @param a Stack A (main stack)
- * @param b Stack B (auxiliary stack)
+ * @brief Main sorting using optimized Turk algorithm.
+ * Uses chunk pushing for better performance on large stacks.
  */
-void	finalize_sort(t_stack *a, t_stack *b)
+void	turk_sort(t_stack *a, t_stack *b)
 {
 	t_move	move;
 
+	chunk_push_to_b(a, b);
+	if (a->size == 3)
+		sort_three(a);
 	while (b->size > 0)
 	{
 		move = find_best_move_ba(a, b);
