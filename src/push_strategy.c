@@ -6,28 +6,36 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 03:02:12 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 03:58:42 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/04 17:14:22 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /**
- * @brief Calculate chunk size based on stack size.
- * Smaller chunks for smaller stacks, larger for bigger ones.
+ * @brief Get the optimal chunk size based on the total size of stack a.
+ * Smaller stack sizes use smaller chunks, and larger stacks use bigger chunks.
+ * 
+ * @param total_size The total number of elements in stack a.
+ * @return The chunk size to use for the push strategy.
  */
 static int	get_chunk_size(int total_size)
 {
 	if (total_size <= 100)
-		return (30);
+		return (35);
 	else if (total_size <= 500)
-		return (60);
+		return (50);
 	else
 		return (85);
 }
 
 /**
- * @brief Check if index belongs to current chunk.
+ * @brief Check whether a given index falls within the current chunk range.
+ * 
+ * @param index Index to check.
+ * @param chunk_start Start of the chunk range (inclusive).
+ * @param chunk_end End of the chunk range (exclusive).
+ * @return 1 if the index is inside the chunk, otherwise 0.
  */
 static bool	in_chunk(int index, int chunk_start, int chunk_end)
 {
@@ -35,7 +43,13 @@ static bool	in_chunk(int index, int chunk_start, int chunk_end)
 }
 
 /**
- * @brief Count rotations needed to find next chunk element.
+ * @brief Calculate the number of rotations needed to reach the next element
+ * that belongs to the current chunk.
+ * 
+ * @param a Stack a.
+ * @param chunk_start Start index of the current chunk.
+ * @param chunk_end End index of the current chunk.
+ * @return Minimum rotation cost to bring a chunk element to the top.
  */
 static int	rotations_to_chunk(t_stack *a, int chunk_start, int chunk_end)
 {
@@ -62,8 +76,40 @@ static int	rotations_to_chunk(t_stack *a, int chunk_start, int chunk_end)
 }
 
 /**
- * @brief Push elements to B using chunk strategy.
- * Pushes elements in chunks to reduce overall rotations.
+ * @brief Push all elements in the current chunk from stack a to b.
+ * Rotates a until a chunk element is on top, then pushes it.
+ * If the pushed element is in the lower half, rotate b to balance it.
+ * 
+ * @param a Stack a.
+ * @param b Stack b.
+ * @param c_start Start index of the current chunk.
+ * @param c_end End index of the current chunk.
+ */
+static void	handle_chunk_push(t_stack *a, t_stack *b, int c_start, int c_end)
+{
+	int	mid;
+
+	mid = a->size / 2;
+	while (a->size > 3 && rotations_to_chunk(a, c_start, c_end) < a->size)
+	{
+		if (in_chunk(a->head->index, c_start, c_end))
+		{
+			pb(a, b);
+			if (b->size > 1 && b->head->index < mid)
+				rb(b);
+		}
+		else
+			ra(a);
+	}
+}
+
+/**
+ * @brief Push elements from stack a to b using a chunked approach.
+ * This reduces the number of operations by pushing groups of values
+ * based on index ranges (chunks) instead of individually.
+ * 
+ * @param a Stack a to sort.
+ * @param b Auxiliary stack b used for sorting.
  */
 void	chunk_push_to_b(t_stack *a, t_stack *b)
 {
@@ -71,30 +117,18 @@ void	chunk_push_to_b(t_stack *a, t_stack *b)
 	int	chunk_start;
 	int	chunk_end;
 	int	total;
-	int	mid_point;
 
 	if (a->size <= 5)
 		return ;
 	total = a->size;
 	chunk_size = get_chunk_size(total);
 	chunk_start = 0;
-	mid_point = total / 2;
 	while (a->size > 3)
 	{
 		chunk_end = chunk_start + chunk_size;
 		if (chunk_end > total)
 			chunk_end = total;
-		while (a->size > 3 && rotations_to_chunk(a, chunk_start, chunk_end) < a->size)
-		{
-			if (in_chunk(a->head->index, chunk_start, chunk_end))
-			{
-				pb(a, b);
-				if (b->size > 1 && b->head->index < mid_point)
-					rb(b);
-			}
-			else
-				ra(a);
-		}
+		handle_chunk_push(a, b, chunk_start, chunk_end);
 		chunk_start = chunk_end;
 	}
 }
