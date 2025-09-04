@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 23:56:16 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/04 18:47:14 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/04 23:58:52 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,28 @@
  */
 int	main(int argc, char **argv)
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_stack	a;
+	t_stack	b;
 
-	init_stacks(&a, &b, argc, argv);
-	index_compress(a);
-	if (is_sorted(a))
-		return (free_stack(b), free_stack(a), EXIT_SUCCESS);
-	if (a->size <= 5)
-		sort_small(a, b);
+	a.size = 0;
+	a.head = NULL;
+	a.tail = NULL;
+	if (argc < 2)
+		exit(EXIT_SUCCESS);
+	if (!parse_args(argc, argv, &a))
+	{
+		ft_putstr_fd("Error\n", STDERR_FILENO);
+		free_stack(&a);
+		exit(EXIT_FAILURE);
+	}
+	index_compress(&a);
+	if (is_sorted(&a))
+		return (free_stack(&a), EXIT_SUCCESS);
+	if (a.size <= 5)
+		sort_small(&a, &b);
 	else
-		turk_sort(a, b);
-	return (free_stack(b), free_stack(a), EXIT_SUCCESS);
+		turk_sort(&a, &b);
+	return (free_stack(&b), free_stack(&a), EXIT_SUCCESS);
 }
 
 /* int	main(int argc, char **argv)
