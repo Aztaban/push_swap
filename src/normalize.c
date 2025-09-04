@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 02:42:29 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 04:02:09 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/04 18:31:41 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
  * 
  * Used for index compression — this array will be sorted to assign normalized 
  * indices.
- * 
- * @param s The stack to convert.
- * @return int* Pointer to the newly allocated array, or NULL on error.
  */
 static int	*to_array(const t_stack *s)
 {
@@ -107,8 +104,6 @@ static int	bsearch_int(const int *arr, int len, int target)
  * 
  * This avoids working with raw values and enables more efficient comparisons.
  * It transforms all values into their respective positions in a sorted array.
- * 
- * @param s Stack to normalize.
  */
 void	index_compress(t_stack *s)
 {

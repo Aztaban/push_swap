@@ -6,12 +6,15 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 21:34:29 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 04:09:20 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/04 18:30:20 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * @brief Find minimum index in stack and return its value.
+ */
 int	get_min_index(const t_stack *s)
 {
 	t_node	*current;
@@ -31,6 +34,9 @@ int	get_min_index(const t_stack *s)
 	return (min);
 }
 
+/**
+ * @brief Find maximum index in stack and return its value.
+ */
 int	get_max_index(const t_stack *s)
 {
 	t_node	*current;
@@ -49,6 +55,7 @@ int	get_max_index(const t_stack *s)
 	}
 	return (max);
 }
+
 /**
  * @brief Find position for element between two values.
  * Returns position where element should be inserted.
@@ -63,8 +70,10 @@ static int	find_slot_position(const t_stack *a, int b_idx)
 	pos = 0;
 	while (cur)
 	{
-		nxt = cur->next ? cur->next : a->head;
-		/* Found the slot between cur and nxt */
+		if (cur->next)
+			nxt = cur->next;
+		else
+			nxt = a->head;
 		if (cur->index < b_idx && b_idx < nxt->index)
 		{
 			if (pos + 1 >= a->size)
@@ -88,15 +97,9 @@ int	find_insert_pos_a(const t_stack *a, int b_idx)
 
 	if (!a || a->size == 0)
 		return (0);
-	
-	/* Get min and max only once */
 	min_idx = get_min_index(a);
 	max_idx = get_max_index(a);
-	
-	/* Element is outside range - goes above minimum */
 	if (b_idx < min_idx || b_idx > max_idx)
 		return (pos_in_stack(a, min_idx));
-	
-	/* Element fits between existing values */
 	return (find_slot_position(a, b_idx));
 }
