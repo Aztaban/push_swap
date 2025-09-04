@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 3025/09/02 22:12:04 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/04 13:01:03 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/04 23:28:54 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,7 @@ int	main(int argc, char **argv)
 		free_stack(b);
 		return (1);
 	}
-	print_result(a, b);
-	free_stack(a);
-	free_stack(b);
-	return (0);
+	
+	
+	return (print_result(a, b), free_stack(a), free_stack(b), 0);
 }

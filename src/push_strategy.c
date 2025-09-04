@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 03:02:12 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/04 17:14:22 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/04 23:37:55 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 static int	get_chunk_size(int total_size)
 {
 	if (total_size <= 100)
-		return (35);
+		return (30);
 	else if (total_size <= 500)
-		return (50);
+		return (100);
 	else
 		return (85);
 }
