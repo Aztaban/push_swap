@@ -6,7 +6,7 @@
 /*   By: mjusta <mjusta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 00:30:50 by mjusta            #+#    #+#             */
-/*   Updated: 2025/09/03 04:09:40 by mjusta           ###   ########.fr       */
+/*   Updated: 2025/09/08 22:37:16 by mjusta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ t_move	find_best_move_ba(const t_stack *a, const t_stack *b)
 	t_move	best;
 	t_move	tmp;
 
+	ft_memset(&best, 0, sizeof(best));
 	if (!b || !b->head)
-		return ((t_move){0});
+		return (best);
 	cur = b->head;
 	best = calc_move_cost_ba(a, b, cur->index);
 	if (best.cost <= 1)
